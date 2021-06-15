@@ -51,7 +51,7 @@ Tempo Tempo:: ChecaConsistencia()
     }
     if(this->hora > 23)
     {
-        aux = int(this->hora/60);
+        aux = int(this->hora/24);
         this->dia += aux;
         this->hora -= aux;
     }
