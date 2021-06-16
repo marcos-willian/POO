@@ -1,5 +1,6 @@
 #include "Tempo.h"
 #include <iostream>
+using namespace std;
 
 // construtor parametrizado
 Tempo::Tempo(int dia, int hora, int min, int seg){
@@ -14,7 +15,7 @@ Tempo::~Tempo()
 {
 }
 // checa a consistencia dos atributos
-void Tempo:: ChecaConsistencia()
+void Tempo::ChecaConsistencia()
 {
     int aux;
     if(this->seg > 59)
@@ -50,6 +51,13 @@ void Tempo:: ChecaConsistencia()
         this->hora = 24+this->hora;
         this->dia--;
     }
+    if(dia < 0)
+    {
+        this->dia = 0;
+        this->hora = 0;
+        this->min = 0;
+        this->seg = 0;
+    }
 }
 // metodo de soma de dois objetos da classe Tempo
 Tempo Tempo:: SomaTempo(Tempo t1, Tempo t2)
@@ -62,7 +70,7 @@ Tempo Tempo:: SomaTempo(Tempo t1, Tempo t2)
     return *this;
 }
 // metodo de impressao de tempo
-void Tempo::PrintTempo()
+void Tempo::print() const
 {
     std::cout<<this->dia<<" Dias, ";
     std::cout<<this->hora<<" Horas, ";
@@ -84,9 +92,14 @@ Tempo Tempo::DecrementaSegundo()
     this->ChecaConsistencia();
     return *this;
 }
-void Tempo::getTempo(int *tempo){
-    tempo[0] = this->dia;
-    tempo[1] = this->hora;
-    tempo[2] = this->min;
-    tempo[3] = this->seg;
+void Tempo::getTempo(){
+    cout<< " Dia: ";
+    cin>> this->dia;
+    cout<< "Hora: ";
+    cin>> this->hora;
+    cout<< "Minuto: ";
+    cin>> this->min;
+    cout<< "Segundo: ";
+    cin>> this->seg;
+    this->ChecaConsistencia();
 }
