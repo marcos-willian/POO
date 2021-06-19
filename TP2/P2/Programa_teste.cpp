@@ -54,9 +54,4 @@ int main(){
     int auxI[4];
     tempo2.getTempo(auxI);
     cout<<"Tempo lido: "<<auxI[0]<<" "<<auxI[1]<<" "<<auxI[2]<<" "<<auxI[3]<<endl;
-    
-
-
-    
-
 }
