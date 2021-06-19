@@ -22,6 +22,13 @@ int main()
     
     cout << "Numero de linhas de X:: " << X.getRows()<<endl;
     cout << "Numero de colunas de X:: " << X.getCols()<<endl;
-   
+
+    cout << "Testando inserção de elemento em matriz: ";
+    cout << "Matriz Original: " << endl;
+    Y.print();
+    Y.putElement(1, 1, 10);
+    cout << "Matriz modificada: " << endl;
+    Y.print();
+
     return 0;
 }
