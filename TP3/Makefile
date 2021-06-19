@@ -1,4 +1,3 @@
-
 all: Teste_Ponto2D
 
 Teste_Ponto2D: Programa_teste.o Ponto2D.o

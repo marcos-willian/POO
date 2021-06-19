@@ -12,6 +12,7 @@ int Ponto2D::getNextId(){
         }
     }
     idFree[id] = true; 
+    
     return id;
 }
 
