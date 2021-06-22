@@ -2,6 +2,17 @@
 #include "Ponto2D.h"
 using namespace std;
 
+void estouraLimite(int i)
+{
+    if (i < 1001)
+    {
+        Ponto2D ponto(i);
+        ponto.printId();
+        cout << "   ";
+        estouraLimite(i+1);
+    }
+}
+
 int main(){
     cout << "Programa Teste classe Ponto2D";
     Ponto2D origem, P1(1), P2(1, 2), P3(2, 3);
@@ -39,5 +50,16 @@ int main(){
     Ponto2D PNew = P2.sumOf(&P3);
     cout << "\n Soma de (2, 1) e (3, 2): ";
     PNew.print();
-     cout << "\n\n";
+    cout << "\n\n";
+    // Desaloca todos os ids
+    origem.~Ponto2D();
+    P1.~Ponto2D();
+    P2.~Ponto2D();
+    P3.~Ponto2D();
+    PNew.~Ponto2D();
+    cout << "\n\n Testa criação de identificadores únicos";
+    cout << "\n O teste consiste em estourar o limite definido de pontos, de modo que ao tentar criar um ponto alem do limite,";
+    cout << "\n ha o estouro da pilha retornando uma mensagem de erro: \n\n";
+
+    estouraLimite(0);
 }

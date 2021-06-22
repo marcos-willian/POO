@@ -14,7 +14,7 @@ int Ponto2D::getNextId(){
     while(idFree[id]){
         id = (id + 1)%1000;
         if(id == idInitial){
-            std::cerr<<"Não possui Id disponível";
+            std::cerr<<"\n\nNão possui Id disponível\n\n";
             exit(1);
         }
     }

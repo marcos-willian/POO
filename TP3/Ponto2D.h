@@ -16,6 +16,8 @@ public:
     ~Ponto2D() {idFree[this->id] = false;};
     // Função membro para escrever (imprimir) as coordenadas do ponto na tela
     void print() const {std::cout<<"("<<this->x<<","<<this->y<<")";}
+    // Função criada para apresentar o valor dos ids gerados de cada ponto
+    void printId() const{std::cout<<"Id do ponto ("<<this->x<<","<<this->y<<"): "<< this->id;}
     // Função membro para calcular a distância do ponto a origem do sistema de coordenadas cartesiano
     double distToOrig() const;
     // Função membro para calcular a distância entre dois pontos 
