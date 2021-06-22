@@ -40,3 +40,5 @@ Ponto2D Ponto2D::sumOf(const Ponto2D* P) const{
     Ponto2D P3( (this->x + P->x), (this->y + P->y) );
     return P3;
 }
+
+bool Ponto2D::idFree[1001] = {false};

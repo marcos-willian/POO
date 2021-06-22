@@ -9,6 +9,7 @@ private:
     const int id;
     static bool idFree[1001];
     int getNextId();
+
 public:
 
     Ponto2D(int c_x = 0, int c_y = 0);
@@ -30,6 +31,4 @@ public:
     Ponto2D sumOf(const Ponto2D* P) const;
 };
 
-bool Ponto2D::idFree[1001] = {false};
-
-#endif //Ponto2d.h
+#endif
