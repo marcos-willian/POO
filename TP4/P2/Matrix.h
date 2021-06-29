@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream> 
 
-
 class Matrix {
     private:
 
@@ -52,5 +51,28 @@ class Matrix {
         //trasnforma uma matriz em 1
         Matrix& ones();        
 };
+
+inline int Matrix::getRows() const {return this->nRows;};
+
+inline int Matrix::getCols() const {return this->nCols;};
+
+//retorna um elemto sendo 1,1 o primeiro elemento da matrix
+inline double Matrix::get(const int& row, const int& col) const{
+    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
+        std::cout<<"Linha ou coluna inválida"<<std::endl;
+        return 0;
+    }
+    return this->m[row - 1][col - 1];
+};
+
+//Coloca um elemento na matrix
+inline void Matrix::putElement(const int& row, const int& col, const double& elem){
+    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
+        std::cout<<"Linha ou coluna inválida"<<std::endl;
+        return;
+    }
+    this->m[row - 1][col - 1] = elem;
+}; 
+
 
 #endif

@@ -31,10 +31,10 @@ Matrix::Matrix(std::ifstream &myFile){
         myFile>> this->nRows;
         myFile.ignore(1, ',');
         myFile>> this->nCols;
-
+        this->m = new double*[nRows];
         for(int i = 0; i < nRows; i++){
-            for (int j = 0; j < nCols; j++)
-            {
+            this->m[i] = new double[nCols];
+            for (int j = 0; j < nCols; j++){
                 myFile>> this->m[i][j];
                 myFile.ignore(1, ',');
             }
@@ -67,9 +67,7 @@ Matrix::~Matrix() {
     }
 }
 
-int Matrix::getRows() const {return this->nRows;};
 
-int Matrix::getCols() const {return this->nCols;};
 // retorna uma matriz transposta
 Matrix Matrix::transpose() const {
     Matrix aux(this->nCols, this->nRows, 0);
@@ -85,7 +83,7 @@ Matrix Matrix::transpose() const {
 void Matrix::print() const {
     for(int i = 0; i < nRows; i++){
         for(int j = 0; j < nCols; j++){
-            std::cout << m[i][j] << " ";
+            std::cout << m[i][j] << "\t";
         }
         std::cout << std::endl;
     }
@@ -93,6 +91,10 @@ void Matrix::print() const {
 
 // Transforma a matriz em uma matriz identidade
 Matrix& Matrix::unit(){
+    if(nRows != nCols){
+        std::cerr<<"Precisa ser uma matriz quadrada!"<<std::endl;
+        return *this;
+    }
     for(int i = 0; i < this->nRows; i++){
         for(int j = 0; j < this->nCols; j++){
             if(i == j){
@@ -104,6 +106,7 @@ Matrix& Matrix::unit(){
     }
     return *this;
 }
+
 
 // Transforma a matriz em uma matriz nula
 Matrix& Matrix::zeros(){
@@ -124,20 +127,6 @@ Matrix& Matrix::ones(){
     }
     return *this;
 }
-//retorna um elemto sendo 1,1 o primeiro elemento da matrix
-double Matrix::get(const int& row, const int& col) const{
-    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
-        std::cout<<"Linha ou coluna inválida"<<std::endl;
-        return 0;
-    }
-    return this->m[row - 1][col - 1];
-};
 
-//Coloca um elemento na matrix
-void Matrix::putElement(const int& row, const int& col, const double& elem){
-    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
-        std::cout<<"Linha ou coluna inválida"<<std::endl;
-        return;
-    }
-    this->m[row - 1][col - 1] = elem;
-}; 
+
+
