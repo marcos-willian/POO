@@ -10,7 +10,7 @@ class Matrix {
         double** m; // m é um array 2D a ser implementado como um pointer de pointers
         int nRows;  // numero de linhas
         int nCols;  //  numero de colunas
-
+        void initCopy(const Matrix& that);
     public:
 
         // Construtores
@@ -35,15 +35,15 @@ class Matrix {
         // Retorna o numero de colunas
         int getCols() const;
         //retorna um elemtro sendo 1,1 o primeiro elemento da matrix
-        double get(const int& row, const int& col) const;
+        //Com sobrecarga de operador --- double get(const int& row, const int& col) const;
         
         // other methods
         //Coloca um elemento na matrix
-        void putElement(const int& row, const int& col, const double& elem);
+        //Com sobrecarga de operador --- void putElement(const int& row, const int& col, const double& elem);
         //retorna uma matriz trasnporta sem alterar o objeto
-        Matrix transpose() const;
+        //Com sobrecarga de operador --- Matrix transpose() const;
         //printa todos os elementos da matrix
-        void print() const;
+        //Com sobrecarga de operador --- void print() const;
         //trasforma a matrix em identidade
         Matrix& unit();
         //trasnforma uma matriz em zeros
@@ -52,13 +52,29 @@ class Matrix {
         Matrix& ones(); 
 
         //Sobrecarga de operadores
-              
+        double& operator() (const int& row, const int& col);
+        Matrix& operator= (const Matrix& that);
+        friend std::ostream& operator<<(std::ostream& os, const Matrix& M);
+        //friend std::ostream& operator>>(std::ostream& is, const Matrix& M);
+        Matrix operator+ (const Matrix& M) const;
+        Matrix& operator+= (const Matrix& M);
+        Matrix operator- (const Matrix& M) const;
+        Matrix& operator-= (const Matrix& M);
+        Matrix& operator~ ();
+        Matrix operator* (const Matrix& M) const;
+        Matrix& operator*= (const Matrix& M);
+        Matrix operator* (const double& num) const;
+        Matrix& operator*= (const double& num);
+        bool operator== (const Matrix& M) const;
+        bool operator!= (const Matrix& M) const;
+        
 };
 
 inline int Matrix::getRows() const {return this->nRows;};
 
 inline int Matrix::getCols() const {return this->nCols;};
 
+/*
 //retorna um elemto sendo 1,1 o primeiro elemento da matrix
 inline double Matrix::get(const int& row, const int& col) const{
     if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
@@ -66,8 +82,9 @@ inline double Matrix::get(const int& row, const int& col) const{
         return 0;
     }
     return this->m[row - 1][col - 1];
-};
+};*/
 
+/*
 //Coloca um elemento na matrix
 inline void Matrix::putElement(const int& row, const int& col, const double& elem){
     if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
@@ -75,7 +92,18 @@ inline void Matrix::putElement(const int& row, const int& col, const double& ele
         return;
     }
     this->m[row - 1][col - 1] = elem;
-}; 
+}; */
+
+inline double& Matrix::operator()(const int& row, const int& col){
+    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
+        std::cerr<<"Linha ou coluna inválida - segmentation fault"<<std::endl;
+        exit(1);
+    }
+    return (this->m[row - 1][col - 1]);
+}
+
+
+
 
 
 #endif

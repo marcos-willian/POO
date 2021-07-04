@@ -1,15 +1,25 @@
 #include <iostream>
 #include "Matrix.h"
 using namespace std;
-
+#define PRINT(X) cout << #X<<":: \n" <<X<<endl;
 int main()
 {
     ifstream in("exempleFile.txt");
     Matrix Y;
     Matrix X(3,1);
-    Matrix Z(3,3,7.0);
+    Matrix Z(X);
     Matrix W(in);
+    PRINT(Y);
+    PRINT(X);
+    PRINT(W);
+    Y = X = W;
+    PRINT(Y);
+    PRINT(X);
+    PRINT(W);
+
     
+    
+    /*
     cout << "Y:: " << endl;
     Y.print();
     cout << "Numero de linhas de Y: " << Y.getRows() <<endl;
@@ -36,7 +46,12 @@ int main()
     X.putElement(1, 1, 10);
     cout << "Matriz modificada: " << endl;
     X.print();
-
+    cout << "Matriz Original: " << endl;
+    X.print();
+    X(1,1) = 20;
+    cout << "Matriz modificada: " << endl;
+    X.print();
+/*
     cout << "Testanto funcao get: " << endl;
     cout << "Matriz W: " << endl;
     W.print();
@@ -71,6 +86,6 @@ int main()
     cout << "Matriz alterada: " << endl;
     X.ones();
     X.print();
-
+*/
     return 0;
 }

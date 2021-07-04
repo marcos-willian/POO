@@ -1,8 +1,8 @@
 
-all: Matrix_p1
+all: Matrix
 
-Matrix_p1: Programa_teste.o Matrix.o
-	g++ Programa_teste.o Matrix.o -o Matrix_p1
+Matrix: Programa_teste.o Matrix.o
+	g++ Programa_teste.o Matrix.o -o Teste
 
 
 Programa_teste.o: Programa_teste.cpp 

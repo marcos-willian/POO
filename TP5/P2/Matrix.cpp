@@ -3,7 +3,18 @@
 #include <iostream>
 #include <fstream> 
 #include <cstdlib> 
-
+//Funções{}
+void Matrix::initCopy(const Matrix& that){
+    this->nRows = that.nRows;
+    this->nCols = that.nCols;
+    this->m = new double*[nRows];
+    for(int i = 0; i < nRows; i++){
+        this->m[i] = new double[nCols];
+        for(int j = 0; j < nCols; j++){
+            this->m[i][j] = that.m[i][j];
+        }
+    }
+}
 
     
 
@@ -47,15 +58,7 @@ Matrix::Matrix(std::ifstream &myFile){
 }
 
 Matrix::Matrix(const Matrix& that){
-    this->nRows = that.nRows;
-    this->nCols = that.nCols;
-    this->m = new double*[nRows];
-    for(int i = 0; i < nRows; i++){
-        this->m[i] = new double[nCols];
-        for(int j = 0; j < nCols; j++){
-            this->m[i][j] = that.m[i][j];
-        }
-    }
+    this->initCopy(that);
 }
 
 // destrutor
@@ -67,7 +70,7 @@ Matrix::~Matrix() {
     }
 }
 
-
+/*
 // retorna uma matriz transposta
 Matrix Matrix::transpose() const {
     Matrix aux(this->nCols, this->nRows, 0);
@@ -77,8 +80,9 @@ Matrix Matrix::transpose() const {
         }
     }
     return aux;
-}
+}*/
 
+/*
 // imprime o conteudo da matriz
 void Matrix::print() const {
     for(int i = 0; i < nRows; i++){
@@ -87,7 +91,7 @@ void Matrix::print() const {
         }
         std::cout << std::endl;
     }
-}
+}*/
 
 // Transforma a matriz em uma matriz identidade
 Matrix& Matrix::unit(){
@@ -128,5 +132,189 @@ Matrix& Matrix::ones(){
     return *this;
 }
 
+//Sobrecargas
 
+Matrix& Matrix::operator=(const Matrix& that){
+    if(this == &that){
+        return *this;
+    }else if(this->m == NULL){
+        this->initCopy(that);
+        return *this;
+    }else{
+        for(int i = 0; i < this->nRows; i++){
+            delete[] this->m[i];
+        }
+        this->initCopy(that);
+        return *this;
+    }
+}
 
+std::ostream& operator<<(std::ostream& os, const Matrix& M){
+    for(int i = 0; i < M.nRows; i++){
+        for(int j = 0; j < M.nCols; j++){
+            os << M.m[i][j] << "\t";
+        }
+        os << std::endl;
+    }
+    os << "Numero de linhas: " << M.getRows() <<std::endl;
+    os << "Numero de colunas: " << M.getCols() <<std::endl;
+    return os;
+}
+
+//Deve ser inserido os dados no mesmo formato que o arquivo
+/*std::ostream& operator>>(std::ostream& is, const Matrix& M){
+    for(int i = 0; i < M.nRows; i++){
+        delete[] M.m[i];
+    }
+    is>> M.nRows;
+    is.ignore(1, ',');
+    is>> M.nCols;
+    M.m = new double*[nRows];
+    for(int i = 0; i < nRows; i++){
+        M.m[i] = new double[nCols];
+        for (int j = 0; j < nCols; j++){
+            is>> M.m[i][j];
+            is.ignore(1, ',');
+        }
+        is.ignore(1, '\n');
+    }
+}*/
+
+Matrix Matrix::operator+ (const Matrix& M) const{
+    if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
+        Matrix temp;
+        temp.nRows = this->nRows;
+        temp.nCols = this->nCols;
+        temp.m = new double*[temp.nRows];
+        for(int i = 0; i < temp.nRows; i++){
+            temp.m[i] = new double[nCols];
+            for(int j = 0; j < temp.nCols; j++){
+                temp.m[i][j] = this->m[i][j] + M.m[i][j];
+            }
+        }
+        return temp;
+    }else{
+        std::cerr << "Dimensões diferentes";
+        return *this;
+    }
+}
+
+Matrix& Matrix::operator+= (const Matrix& M){
+    if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
+        for(int i = 0; i < nRows; i++){
+            for(int j = 0; j < nCols; j++){
+                this->m[i][j] = this->m[i][j] + M.m[i][j];
+            }
+        }
+        return *this;
+    }else{
+        std::cerr << "Dimensões diferentes";
+        return *this;
+    }
+}
+
+Matrix Matrix::operator- (const Matrix& M) const{
+    if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
+        Matrix temp;
+        temp.nRows = this->nRows;
+        temp.nCols = this->nCols;
+        temp.m = new double*[temp.nRows];
+        for(int i = 0; i < temp.nRows; i++){
+            temp.m[i] = new double[nCols];
+            for(int j = 0; j < temp.nCols; j++){
+                temp.m[i][j] = this->m[i][j] - M.m[i][j];
+            }
+        }
+        return temp;
+    }else{
+        std::cerr << "Dimensões diferentes";
+        return *this;
+    }
+}
+
+Matrix& Matrix::operator-= (const Matrix& M){
+    if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
+        for(int i = 0; i < nRows; i++){
+            for(int j = 0; j < nCols; j++){
+                this->m[i][j] = this->m[i][j] - M.m[i][j];
+            }
+        }
+        return *this;
+    }else{
+        std::cerr << "Dimensões diferentes";
+        return *this;
+    }
+}
+
+Matrix& Matrix::operator~ (){
+    Matrix aux(this->nCols, this->nRows, 0);
+    for(int i = 0; i < this->nRows; i++){
+        for(int j = 0; j < this->nCols; j++){
+            aux.m[j][i] = this->m[i][j];
+        }
+    }
+    return *this = aux;
+}
+
+Matrix Matrix::operator* (const Matrix& M) const{
+    if((this->nCols == M.nRows)){
+        Matrix temp;
+        temp.nRows = this->nRows;
+        temp.nCols = M.nCols;
+        temp.m = new double*[temp.nRows] {};
+        for(int i = 0; i < temp.nRows; i++){
+            temp.m[i] = new double[nCols] {};
+            for(int j = 0; j < temp.nCols; j++){
+                for(int l = 0; l < this->nCols; l++)
+                        temp.m[i][j] += this->m[i][l] * M.m[l][j];
+            }
+        }
+        return temp;
+    }else{
+        std::cerr << "Dimensões diferentes";
+        return *this;
+    }
+}
+
+Matrix& Matrix::operator*= (const Matrix& M){
+    return *this = *this * M;
+}
+
+ Matrix Matrix::operator* (const double& num) const{
+    Matrix temp;
+    temp.nRows = this->nRows;
+    temp.nCols = this->nCols;
+    temp.m = new double*[temp.nRows];
+    for(int i = 0; i < temp.nRows; i++){
+        temp.m[i] = new double[nCols];
+        for(int j = 0; j < temp.nCols; j++){
+            temp.m[i][j] = this->m[i][j] * num;
+        }
+    }
+    return temp;
+ }
+
+Matrix& Matrix::operator*= (const double& num){
+    for(int i = 0; i < nRows; i++){
+        for(int j = 0; j < nCols; j++){
+            this->m[i][j] = this->m[i][j] * num;
+        }
+    }
+    return *this;
+}
+
+bool Matrix::operator== (const Matrix& M) const{
+    if((this->nRows != M.nRows) || (this->nCols != M.nCols)){
+        return false;
+    }
+    for(int i = 0; i < nRows; i++){
+        for(int j = 0; j < nCols; j++){
+            if(this->m[i][j] != M.m[i][j])
+                return false;
+        }
+    } 
+    return true;
+}
+bool Matrix::operator!= (const Matrix& M) const{
+    return !(*this == M);
+}
