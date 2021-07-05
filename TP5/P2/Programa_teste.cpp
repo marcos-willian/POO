@@ -2,90 +2,80 @@
 #include "Matrix.h"
 using namespace std;
 #define PRINT(X) cout << #X<<":: \n" <<X<<endl;
+#define TRACE(s) cerr <<"Testando " <<#s<<": \n" << endl; s
 int main()
 {
     ifstream in("exempleFile.txt");
     Matrix Y;
-    Matrix X(3,1);
-    Matrix Z(X);
+    Matrix X(3,1), A(3,3), C(3,3);
+    Matrix Z(3,2,7.0);
     Matrix W(in);
+
     PRINT(Y);
     PRINT(X);
+    PRINT(A);
+    PRINT(C);
+    PRINT(Z);
     PRINT(W);
-    Y = X = W;
-    PRINT(Y);
+    
+    TRACE(A(2,1) = 10);
+    PRINT(A);
+
+    TRACE(A + A);
+    PRINT(A + A);
+
+    TRACE(C = A + W);                             // Soma
+    PRINT(C);
+
+    TRACE(C -= A); 
+    PRINT(C);                                  // Subtração 
+     
+    TRACE(A = C - A);                                  // Subtração
+    PRINT(A);
+
+    TRACE(A += A);                                  // Subtração
+    PRINT(A);
+
+    TRACE(A = ~C);                                  // A é igual a transposta de C
+    PRINT(A);
+
+    
+    TRACE(X = Z * 2);                                   // multiplicação por uma constante
     PRINT(X);
+
+    TRACE(X *= 2);                                   // multiplicação por uma constante
+    PRINT(X);
+
+    TRACE(C = A*C);                                         // multiplicação de matrizes
+    PRINT(C);
+
+    TRACE(C.unit());
+    PRINT(C);
+
+    TRACE(C *= X);                                            // multiplicação de matrizes
+    PRINT(C);
+
+    TRACE(A == C);                                 // verifica a igualdade entre A e C
+    if( A==C ) 
+        cout << "Verdadeiro\n";
+    else
+        cout<< "Falso\n";
+
+    TRACE(X != Y);                                  // verifica a desigualdade entre A e C
+    if( X != Y ) 
+        cout << "Verdadeiro\n";
+    else
+        cout<< "Falso\n";
+
+    TRACE(cout << Z << endl);                        // impressão de matrizes
+    TRACE(cin >> W);                                        // leitura de dados para dentro da matriz Y 
     PRINT(W);
-
     
-    
-    /*
-    cout << "Y:: " << endl;
-    Y.print();
-    cout << "Numero de linhas de Y: " << Y.getRows() <<endl;
-    cout << "Numero de colunas de Y: " << Y.getCols() <<endl;
-    
-    cout << "X:: " << endl;
-    X.print();
-    cout << "Numero de linhas de X: " << X.getRows() <<endl;
-    cout << "Numero de colunas de X: " << X.getCols() <<endl;
-    
-    cout << "Z:: " << endl;
-    Z.print();
-    cout << "Numero de linhas de Z: " << Z.getRows() <<endl;
-    cout << "Numero de colunas de Z: " << Z.getCols() <<endl;
+    TRACE(A.zeros());
+    PRINT(A);
 
-    cout << "W:: " << endl;
-    W.print();
-    cout << "Numero de linhas de X: " << W.getRows() <<endl;
-    cout << "Numero de colunas de X: " << W.getCols() <<endl;
+    TRACE(X.ones());
+    PRINT(X);
 
-    cout << "Testando inserção de elemento (1,1) em matriz: " << endl;
-    cout << "Matriz Original: " << endl;
-    X.print();
-    X.putElement(1, 1, 10);
-    cout << "Matriz modificada: " << endl;
-    X.print();
-    cout << "Matriz Original: " << endl;
-    X.print();
-    X(1,1) = 20;
-    cout << "Matriz modificada: " << endl;
-    X.print();
-/*
-    cout << "Testanto funcao get: " << endl;
-    cout << "Matriz W: " << endl;
-    W.print();
-    cout << "elemento (2, 2): ";
-    double element = W.get(2, 2);
-    cout << element << endl;
-
-    cout << "A é transposta de X: " << endl;
-    Matrix A = X.transpose();
-    A.print();
-    cout << "Numero de linhas de A: " << A.getRows() <<endl;
-    cout << "Numero de colunas de A: " << A.getCols() <<endl;
-
-    cout << "Teste transformação em matriz identidade: " << endl;
-    cout << "Matriz original: " << endl;
-    Z.print();
-    cout << "Matriz alterada: " << endl;
-    Z.unit();
-    Z.print();
-
-    cout << "Teste transformação em matriz de 0's: " << endl;
-    cout << "Matriz original: " << endl;
-    A = W.transpose();
-    A.print();
-    cout << "Matriz alterada: " << endl;
-    A.zeros();
-    A.print();
-
-    cout << "Teste transformacao em matriz de 1's: " << endl;
-    cout << "Matriz original: " << endl;
-    X.print();
-    cout << "Matriz alterada: " << endl;
-    X.ones();
-    X.print();
-*/
     return 0;
 }

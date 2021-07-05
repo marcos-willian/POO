@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream> 
 #include <cstdlib> 
-//Funções{}
+
 void Matrix::initCopy(const Matrix& that){
     this->nRows = that.nRows;
     this->nCols = that.nCols;
@@ -16,10 +16,6 @@ void Matrix::initCopy(const Matrix& that){
     }
 }
 
-    
-
-// construtor parametrico 1 - cria uma matriz com nRows  = rows, nCols = cols e 
-// com todos os elementos iguais a elem (double)
 Matrix::Matrix(const int& rows, const int& cols, const double& elem){
     this->nRows = rows;
     this->nCols = cols;
@@ -31,12 +27,7 @@ Matrix::Matrix(const int& rows, const int& cols, const double& elem){
         }
     }
 }
-
-// contrutor parametrico 2 - cria uma matriz com os dados fornecidos pelo arquivo texto myFile.
-// O arquivo deve estar no seguinte modelo (em csv)
-//nRow,nCol
-//m[0,0],m[0,1]
-//m[1,0],m[1,1]
+ 
 Matrix::Matrix(std::ifstream &myFile){
     if(myFile.is_open()){
         myFile>> this->nRows;
@@ -47,21 +38,18 @@ Matrix::Matrix(std::ifstream &myFile){
             this->m[i] = new double[nCols];
             for (int j = 0; j < nCols; j++){
                 myFile>> this->m[i][j];
-                myFile.ignore(1, ',');
+                myFile.ignore(1);
             }
-            myFile.ignore(1, '\n');
         }
         myFile.close();
     }
-    else std::cout << "ocorreu um erro ao abrir o arquivo";
-    
+    else std::cout << "ocorreu um erro ao abrir o arquivo"; 
 }
 
 Matrix::Matrix(const Matrix& that){
     this->initCopy(that);
 }
 
-// destrutor
 Matrix::~Matrix() {
     this->nRows = 0;
     this->nCols = 0;
@@ -70,30 +58,6 @@ Matrix::~Matrix() {
     }
 }
 
-/*
-// retorna uma matriz transposta
-Matrix Matrix::transpose() const {
-    Matrix aux(this->nCols, this->nRows, 0);
-    for(int i = 0; i < this->nRows; i++){
-        for(int j = 0; j < this->nCols; j++){
-            aux.m[j][i] = this->m[i][j];
-        }
-    }
-    return aux;
-}*/
-
-/*
-// imprime o conteudo da matriz
-void Matrix::print() const {
-    for(int i = 0; i < nRows; i++){
-        for(int j = 0; j < nCols; j++){
-            std::cout << m[i][j] << "\t";
-        }
-        std::cout << std::endl;
-    }
-}*/
-
-// Transforma a matriz em uma matriz identidade
 Matrix& Matrix::unit(){
     if(nRows != nCols){
         std::cerr<<"Precisa ser uma matriz quadrada!"<<std::endl;
@@ -111,8 +75,6 @@ Matrix& Matrix::unit(){
     return *this;
 }
 
-
-// Transforma a matriz em uma matriz nula
 Matrix& Matrix::zeros(){
     for(int i = 0; i < this->nRows; i++){
         for(int j = 0; j < this->nCols; j++){
@@ -122,7 +84,6 @@ Matrix& Matrix::zeros(){
     return *this;
 }
 
-// Altera o valor de todos os elementos da matriz para 1
 Matrix& Matrix::ones(){
     for(int i = 0; i < this->nRows; i++){
         for(int j = 0; j < this->nCols; j++){
@@ -131,8 +92,6 @@ Matrix& Matrix::ones(){
     }
     return *this;
 }
-
-//Sobrecargas
 
 Matrix& Matrix::operator=(const Matrix& that){
     if(this == &that){
@@ -161,24 +120,24 @@ std::ostream& operator<<(std::ostream& os, const Matrix& M){
     return os;
 }
 
-//Deve ser inserido os dados no mesmo formato que o arquivo
-/*std::ostream& operator>>(std::ostream& is, const Matrix& M){
+std::istream& operator>>(std::istream& is, Matrix& M){
     for(int i = 0; i < M.nRows; i++){
         delete[] M.m[i];
     }
     is>> M.nRows;
     is.ignore(1, ',');
     is>> M.nCols;
-    M.m = new double*[nRows];
-    for(int i = 0; i < nRows; i++){
-        M.m[i] = new double[nCols];
-        for (int j = 0; j < nCols; j++){
+    is.ignore(1, '\n');
+    M.m = new double*[M.nRows];
+    for(int i = 0; i < M.nRows; i++){
+        M.m[i] = new double[M.nCols];
+        for (int j = 0; j < M.nCols; j++){
             is>> M.m[i][j];
-            is.ignore(1, ',');
+            is.ignore(1);
         }
-        is.ignore(1, '\n');
     }
-}*/
+    return is;
+}
 
 Matrix Matrix::operator+ (const Matrix& M) const{
     if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
@@ -318,3 +277,42 @@ bool Matrix::operator== (const Matrix& M) const{
 bool Matrix::operator!= (const Matrix& M) const{
     return !(*this == M);
 }
+
+/*===== Funções substituidas por overload ======*
+void Matrix::print() const {
+    for(int i = 0; i < nRows; i++){
+        for(int j = 0; j < nCols; j++){
+            std::cout << m[i][j] << "\t";
+        }
+        std::cout << std::endl;
+    }
+}
+
+Matrix Matrix::transpose() const {
+    Matrix aux(this->nCols, this->nRows, 0);
+    for(int i = 0; i < this->nRows; i++){
+        for(int j = 0; j < this->nCols; j++){
+            aux.m[j][i] = this->m[i][j];
+        }
+    }
+    return aux;
+}
+
+inline double Matrix::get(const int& row, const int& col) const{
+    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
+        std::cout<<"Linha ou coluna inválida"<<std::endl;
+        return 0;
+    }
+    return this->m[row - 1][col - 1];
+}
+
+inline void Matrix::putElement(const int& row, const int& col, const double& elem){
+    if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
+        std::cout<<"Linha ou coluna inválida"<<std::endl;
+        return;
+    }
+    this->m[row - 1][col - 1] = elem;
+}
+
+/*=============== END OF SECTION ==============*/
+
