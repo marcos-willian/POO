@@ -18,7 +18,7 @@ class Matrix {
         int nCols;  //* INFO  numero de colunas
 
         /**======================
-         *@description: Aloca espaço e copia os dados de uma matrix dada 
+         *@description: Aloca espaço e copia os dados de uma matriz dada 
          *@return type: void
          *========================**/
         void initCopy(const Matrix& that);
@@ -72,60 +72,60 @@ class Matrix {
          *========================**/ 
         int getCols() const;
 
-        //retorna um elemtro sendo 1,1 o primeiro elemento da matrix
+        //retorna um elemtro sendo 1,1 o primeiro elemento da matriz
         //Com sobrecarga de operador --- 
         
         // other methods
-        //Coloca um elemento na matrix
+        //Coloca um elemento na matriz
         //Com sobrecarga de operador --- 
         //retorna uma matriz trasnporta sem alterar o objeto
         //Com sobrecarga de operador --- 
-        //printa todos os elementos da matrix
+        //printa todos os elementos da matriz
         //Com sobrecarga de operador ---
 
         /**======================
-         *@description: Trasnforma a matrix em identidade
+         *@description: Trasnforma a matriz em identidade
          *! Altera o objeto
          *@return type: Matrix&
          *========================**/ 
         Matrix& unit();
 
         /**======================
-         *@description: Trasnforma a matrix em 0s
+         *@description: Transforma a matriz em 0s
          *! Altera o objeto
          *@return type: Matrix&
          *========================**/ 
         Matrix& zeros();
         
         /**======================
-         *@description: Trasnforma a matrix em 1s
+         *@description: Transforma a matriz em 1s
          *! Altera o objeto
          *@return type: Matrix&
          *========================**/ 
         Matrix& ones(); 
 
         /**======================
-         *@description: Getter. Retorna um elemento da matrix indexando apartir de (1,1)
+         *@description: Getter. Retorna um elemento da matriz indexando a partir de (1,1)
          *@return type: double&
          *========================**/ 
         double& operator() (const int& row, const int& col) const;
 
         /**======================
-         *@description: Copia uma matirx dado para o objeto
+         *@description: Copia uma matriz dado para o objeto
          *! Altera o objeto
          *@return type: Matrix&
          *========================**/ 
         Matrix& operator= (const Matrix& that);
 
         /**======================
-         *@description: Imprime a matrix, o numero de linhas e numero de colunas
+         *@description: Imprime a matriz, o numero de linhas e numero de colunas
          *@return type: Matrix&
          *========================**/ 
         friend std::ostream& operator<<(std::ostream& os, const Matrix& M);
 
         /**======================
-         *@description: Preenche uma matrix conforme a entrada. A entrada deve estar padronizada no padrão csv
-                no qual a primeira linha é o numero de linhas e o numero de colunas como o exemplo a seguir:
+         *@description: Preenche uma matriz conforme a entrada. A entrada deve estar padronizada no padrão csv
+                no qual a primeira linha indica o numero de linhas e o numero de colunas como o exemplo a seguir:
                         nRows,nCols
                         m[0,0],m[0,1]
                         m[1,0],m[1,1]
@@ -181,13 +181,13 @@ class Matrix {
         Matrix& operator*= (const Matrix& M);
 
         /**======================
-         *@description: Realiza a multiplicação de uma matris por um escalar
+         *@description: Realiza a multiplicação de uma matriz por um escalar
          *@return type: Matrix
          *========================**/ 
         Matrix operator* (const double& num) const;
 
         /**======================
-         *@description: Realiza a multiplicação de uma matris por um escalar e guarda no objeto a esquerda
+         *@description: Realiza a multiplicação de uma matriz por um escalar e guarda no objeto a esquerda
          *! Altera o objeto
          *@return type: Matrix&
          *========================**/ 
