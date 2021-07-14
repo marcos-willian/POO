@@ -4,38 +4,41 @@
 #include <fstream> 
 #include <cstdlib> 
 
-void Matrix::initCopy(const Matrix& that){
+template <class T>
+void Matrix<T>::initCopy(const Matrix& that){
     this->nRows = that.nRows;
     this->nCols = that.nCols;
-    this->m = new double*[nRows];
+    this->m = new T*[nRows];
     for(int i = 0; i < nRows; i++){
-        this->m[i] = new double[nCols];
+        this->m[i] = new T[nCols];
         for(int j = 0; j < nCols; j++){
             this->m[i][j] = that.m[i][j];
         }
     }
 }
 
-Matrix::Matrix(const int& rows, const int& cols, const double& elem){
+template <class T>
+Matrix<T>::Matrix(const int& rows, const int& cols, const T& elem){
     this->nRows = rows;
     this->nCols = cols;
-    this->m = new double*[nRows];
+    this->m = new T*[nRows];
     for(int i = 0; i < nRows; i++){
-        this->m[i] = new double[nCols];
+        this->m[i] = new T[nCols];
         for(int j = 0; j < nCols; j++){
             this->m[i][j] = elem;
         }
     }
 }
- 
-Matrix::Matrix(std::ifstream &myFile){
+
+template <class T>
+Matrix<T>::Matrix(std::ifstream &myFile){
     if(myFile.is_open()){
         myFile>> this->nRows;
         myFile.ignore(1, ',');
         myFile>> this->nCols;
-        this->m = new double*[nRows];
+        this->m = new T*[nRows];
         for(int i = 0; i < nRows; i++){
-            this->m[i] = new double[nCols];
+            this->m[i] = new T[nCols];
             for (int j = 0; j < nCols; j++){
                 myFile>> this->m[i][j];
                 myFile.ignore(1);
@@ -46,11 +49,13 @@ Matrix::Matrix(std::ifstream &myFile){
     else std::cout << "ocorreu um erro ao abrir o arquivo"; 
 }
 
-Matrix::Matrix(const Matrix& that){
+template <class T>
+Matrix<T>::Matrix(const Matrix& that){
     this->initCopy(that);
 }
 
-Matrix::~Matrix() {
+template <class T>
+Matrix<T>::~Matrix() {
     this->nRows = 0;
     this->nCols = 0;
     for(int i = 0; i < nRows; i++){
@@ -58,7 +63,8 @@ Matrix::~Matrix() {
     }
 }
 
-Matrix& Matrix::unit(){
+template <class T>
+Matrix<T>& Matrix<T>::unit(){
     if(nRows != nCols){
         std::cerr<<"Precisa ser uma matriz quadrada!"<<std::endl;
         return *this;
@@ -75,7 +81,8 @@ Matrix& Matrix::unit(){
     return *this;
 }
 
-Matrix& Matrix::zeros(){
+template <class T>
+Matrix<T>& Matrix<T>::zeros(){
     for(int i = 0; i < this->nRows; i++){
         for(int j = 0; j < this->nCols; j++){
             this->m[i][j] = 0;
@@ -84,7 +91,8 @@ Matrix& Matrix::zeros(){
     return *this;
 }
 
-Matrix& Matrix::ones(){
+template <class T>
+Matrix<T>& Matrix<T>::ones(){
     for(int i = 0; i < this->nRows; i++){
         for(int j = 0; j < this->nCols; j++){
             this->m[i][j] = 1;
@@ -93,7 +101,8 @@ Matrix& Matrix::ones(){
     return *this;
 }
 
-Matrix& Matrix::operator=(const Matrix& that){
+template <class T>
+Matrix<T>& Matrix<T>::operator=(const Matrix& that){
     if(this == &that){
         return *this;
     }else if(this->m == NULL){
@@ -108,6 +117,7 @@ Matrix& Matrix::operator=(const Matrix& that){
     }
 }
 
+template <class T>
 std::ostream& operator<<(std::ostream& os, const Matrix& M){
     for(int i = 0; i < M.nRows; i++){
         for(int j = 0; j < M.nCols; j++){
@@ -115,11 +125,12 @@ std::ostream& operator<<(std::ostream& os, const Matrix& M){
         }
         os << std::endl;
     }
-    os << "Numero de linhas: " << M.getRows() <<std::endl;
-    os << "Numero de colunas: " << M.getCols() <<std::endl;
+   /* os << "Numero de linhas: " << M.getRows() <<std::endl;
+    os << "Numero de colunas: " << M.getCols() <<std::endl;*/
     return os;
 }
 
+template <class T>
 std::istream& operator>>(std::istream& is, Matrix& M){
     for(int i = 0; i < M.nRows; i++){
         delete[] M.m[i];
@@ -128,9 +139,9 @@ std::istream& operator>>(std::istream& is, Matrix& M){
     is.ignore(1, ',');
     is>> M.nCols;
     is.ignore(1, '\n');
-    M.m = new double*[M.nRows];
+    M.m = new T*[M.nRows];
     for(int i = 0; i < M.nRows; i++){
-        M.m[i] = new double[M.nCols];
+        M.m[i] = new T[M.nCols];
         for (int j = 0; j < M.nCols; j++){
             is>> M.m[i][j];
             is.ignore(1);
@@ -139,14 +150,15 @@ std::istream& operator>>(std::istream& is, Matrix& M){
     return is;
 }
 
-Matrix Matrix::operator+ (const Matrix& M) const{
+template <class T>
+Matrix<T> Matrix<T>::operator+ (const Matrix& M) const{
     if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
         Matrix temp;
         temp.nRows = this->nRows;
         temp.nCols = this->nCols;
-        temp.m = new double*[temp.nRows];
+        temp.m = new T*[temp.nRows];
         for(int i = 0; i < temp.nRows; i++){
-            temp.m[i] = new double[nCols];
+            temp.m[i] = new T[nCols];
             for(int j = 0; j < temp.nCols; j++){
                 temp.m[i][j] = this->m[i][j] + M.m[i][j];
             }
@@ -158,7 +170,8 @@ Matrix Matrix::operator+ (const Matrix& M) const{
     }
 }
 
-Matrix& Matrix::operator+= (const Matrix& M){
+template <class T>
+Matrix<T>& Matrix<T>::operator+= (const Matrix& M){
     if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
         for(int i = 0; i < nRows; i++){
             for(int j = 0; j < nCols; j++){
@@ -172,14 +185,15 @@ Matrix& Matrix::operator+= (const Matrix& M){
     }
 }
 
-Matrix Matrix::operator- (const Matrix& M) const{
+template <class T>
+Matrix<T> Matrix<T>::operator- (const Matrix& M) const{
     if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
         Matrix temp;
         temp.nRows = this->nRows;
         temp.nCols = this->nCols;
-        temp.m = new double*[temp.nRows];
+        temp.m = new T*[temp.nRows];
         for(int i = 0; i < temp.nRows; i++){
-            temp.m[i] = new double[nCols];
+            temp.m[i] = new T[nCols];
             for(int j = 0; j < temp.nCols; j++){
                 temp.m[i][j] = this->m[i][j] - M.m[i][j];
             }
@@ -191,7 +205,8 @@ Matrix Matrix::operator- (const Matrix& M) const{
     }
 }
 
-Matrix& Matrix::operator-= (const Matrix& M){
+template <class T>
+Matrix<T>& Matrix<T>::operator-= (const Matrix& M){
     if((this->nRows == M.nRows) && (this->nCols == M.nCols)){
         for(int i = 0; i < nRows; i++){
             for(int j = 0; j < nCols; j++){
@@ -205,8 +220,9 @@ Matrix& Matrix::operator-= (const Matrix& M){
     }
 }
 
-Matrix& Matrix::operator~ (){
-    Matrix aux(this->nCols, this->nRows, 0);
+template <class T>
+Matrix<T>& Matrix<T>::operator~ (){
+    Matrix<T> aux(this->nCols, this->nRows, 0);
     for(int i = 0; i < this->nRows; i++){
         for(int j = 0; j < this->nCols; j++){
             aux.m[j][i] = this->m[i][j];
@@ -215,14 +231,15 @@ Matrix& Matrix::operator~ (){
     return *this = aux;
 }
 
-Matrix Matrix::operator* (const Matrix& M) const{
+template <class T>
+Matrix<T> Matrix<T>::operator* (const Matrix& M) const{
     if((this->nCols == M.nRows)){
         Matrix temp;
         temp.nRows = this->nRows;
         temp.nCols = M.nCols;
-        temp.m = new double*[temp.nRows] {};
+        temp.m = new T*[temp.nRows] {};
         for(int i = 0; i < temp.nRows; i++){
-            temp.m[i] = new double[nCols] {};
+            temp.m[i] = new T[nCols] {};
             for(int j = 0; j < temp.nCols; j++){
                 for(int l = 0; l < this->nCols; l++)
                         temp.m[i][j] += this->m[i][l] * M.m[l][j];
@@ -235,17 +252,19 @@ Matrix Matrix::operator* (const Matrix& M) const{
     }
 }
 
-Matrix& Matrix::operator*= (const Matrix& M){
+template <class T>
+Matrix<T>& Matrix<T>::operator*= (const Matrix& M){
     return *this = *this * M;
 }
 
- Matrix Matrix::operator* (const double& num) const{
+template <class T>
+Matrix<T> Matrix<T>::operator* (const T& num) const{
     Matrix temp;
     temp.nRows = this->nRows;
     temp.nCols = this->nCols;
-    temp.m = new double*[temp.nRows];
+    temp.m = new T*[temp.nRows];
     for(int i = 0; i < temp.nRows; i++){
-        temp.m[i] = new double[nCols];
+        temp.m[i] = new T[nCols];
         for(int j = 0; j < temp.nCols; j++){
             temp.m[i][j] = this->m[i][j] * num;
         }
@@ -253,7 +272,8 @@ Matrix& Matrix::operator*= (const Matrix& M){
     return temp;
  }
 
-Matrix& Matrix::operator*= (const double& num){
+template <class T>
+Matrix<T>& Matrix<T>::operator*= (const T& num){
     for(int i = 0; i < nRows; i++){
         for(int j = 0; j < nCols; j++){
             this->m[i][j] = this->m[i][j] * num;
@@ -262,7 +282,8 @@ Matrix& Matrix::operator*= (const double& num){
     return *this;
 }
 
-bool Matrix::operator== (const Matrix& M) const{
+template <class T>
+bool Matrix<T>::operator== (const Matrix<T>& M) const{
     if((this->nRows != M.nRows) || (this->nCols != M.nCols)){
         return false;
     }
@@ -274,7 +295,9 @@ bool Matrix::operator== (const Matrix& M) const{
     } 
     return true;
 }
-bool Matrix::operator!= (const Matrix& M) const{
+
+template <class T>
+bool Matrix<T>::operator!= (const Matrix& M) const{
     return !(*this == M);
 }
 

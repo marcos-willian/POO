@@ -10,10 +10,9 @@
 #include <iostream>
 #include <fstream> 
 
-class Matrix {
+template <class T> class Matrix {
     private:
-
-        double** m; //* INFO  m é um array 2D a ser implementado como um ponteiro de ponteiros
+        T** m; //* INFO  m é um array 2D a ser implementado como um ponteiro de ponteiros
         int nRows;  //* INFO numero de linhas
         int nCols;  //* INFO  numero de colunas
 
@@ -35,7 +34,7 @@ class Matrix {
                 com nRows  = rows, nCols = cols e com todos os elementos iguais a elem (double)
          *@return type: Matrix
          *========================**/                      
-        Matrix(const int& rows, const int& cols, const double& elem = 0.0);
+        Matrix(const int& rows, const int& cols, const T& elem = 0.0);
          
         /**======================
          *@description: contrutor parametrico 2 - cria uma matriz 
@@ -72,17 +71,6 @@ class Matrix {
          *========================**/ 
         int getCols() const;
 
-        //retorna um elemtro sendo 1,1 o primeiro elemento da matriz
-        //Com sobrecarga de operador --- 
-        
-        // other methods
-        //Coloca um elemento na matriz
-        //Com sobrecarga de operador --- 
-        //retorna uma matriz trasnporta sem alterar o objeto
-        //Com sobrecarga de operador --- 
-        //printa todos os elementos da matriz
-        //Com sobrecarga de operador ---
-
         /**======================
          *@description: Trasnforma a matriz em identidade
          *! Altera o objeto
@@ -108,7 +96,7 @@ class Matrix {
          *@description: Getter. Retorna um elemento da matriz indexando a partir de (1,1)
          *@return type: double&
          *========================**/ 
-        double& operator() (const int& row, const int& col) const;
+        T& operator() (const int& row, const int& col) const;
 
         /**======================
          *@description: Copia uma matriz dado para o objeto
@@ -121,7 +109,7 @@ class Matrix {
          *@description: Imprime a matriz, o numero de linhas e numero de colunas
          *@return type: Matrix&
          *========================**/ 
-        friend std::ostream& operator<<(std::ostream& os, const Matrix& M);
+        friend std::ostream& operator<< <>(std::ostream& os, const Matrix& M);
 
         /**======================
          *@description: Preenche uma matriz conforme a entrada. A entrada deve estar padronizada no padrão csv
@@ -184,14 +172,14 @@ class Matrix {
          *@description: Realiza a multiplicação de uma matriz por um escalar
          *@return type: Matrix
          *========================**/ 
-        Matrix operator* (const double& num) const;
+        Matrix operator* (const T& num) const;
 
         /**======================
          *@description: Realiza a multiplicação de uma matriz por um escalar e guarda no objeto a esquerda
          *! Altera o objeto
          *@return type: Matrix&
          *========================**/ 
-        Matrix& operator*= (const double& num);
+        Matrix& operator*= (const T& num);
 
         /**======================
          *@description: Compara duas matrizes
@@ -215,12 +203,14 @@ class Matrix {
 /**============================================
  *               Funções inline
  *=============================================**/
+template <class T>
+inline int Matrix<T>::getRows() const {return this->nRows;};
 
-inline int Matrix::getRows() const {return this->nRows;};
-
+template <class T>
 inline int Matrix::getCols() const {return this->nCols;};
 
-inline double& Matrix::operator()(const int& row, const int& col) const{
+template <class T> 
+inline T& Matrix::operator()(const int& row, const int& col) const{
     if(((row - 1) < 0) || ((col - 1) < 0) || (row > this->nRows) || (col > this->nCols)){
         std::cerr<<"Linha ou coluna inválida - segmentation fault"<<std::endl;
         exit(1);
