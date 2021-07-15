@@ -12,7 +12,7 @@ template<class T> float restOf(T n){
  **              fibonacci
  *?  Retorna o enésimo termo da série de fibonacci no tipo dado pelo template
  *@param n generico //! Deve ser numerico e pertencente aos naturais
- *@return tipo pedido pela função
+ *@return tipo pedido pela função (precisa ser um tipo numérico ou uma classe numérica)
  *=============================================**/
 template <class T> T fibonacci(T n) {
   T x;
@@ -21,6 +21,9 @@ template <class T> T fibonacci(T n) {
   }
   else if(restOf(n) > 0){
     throw std::domain_error("The param must be a natural number");
+  }
+  else if(typeid(T).name == typeid(char).name){
+    throw std::bad_typeid("The type of param must be a number type, or a numerical class.")
   }
 
   if (n == 1) {
@@ -41,11 +44,18 @@ template <class T> void print(T n){
 
 int main(){
   /// Testes da funcao
+
+  try{
+    // teste p/ executar excecao por argumento nao numerico
+    print<char>(15);
+  }
+  catch(bad_typeid& err){
+    cerr<<err.what()<<endl;
+  }
+  
   try{
     // teste p/ tipo inteiro
     print<int>(10);
-    // teste p/ caractere
-    print<char>(15);
     // teste p/ tipo decimal
     print<float>(3.0);
     // teste p/ decimal c/ dupla precisao
