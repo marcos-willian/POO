@@ -5,36 +5,39 @@ using namespace std;
 #define PRINT(X) cout << #X<<":: \n" <<X<<endl;
 #define TRACE(s) cerr <<"Testando " <<#s<<": \n" << endl; s
 // Programa cliente para testar a classe Matrix
-
-void clearscreen() {
-    if (system( "clear" )) system( "cls" );
-}
-
+/**----------------------------------------------
+ * todo                  To do
+ *   Criar semelhante aos do profesor testes observando funções que podem dar problemas
+ * utilizar try catch.
+ *   Vrificar se fiz merdinhas
+ *   
+ *
+ *---------------------------------------------**/
 void inline continuar(){
-    cout << "\nPressione qualquer tecla para continuar...";
+    cout << "\nPressione enter para continuar...";
     getchar();
-    clearscreen();
+    if (system( "clear" )) system( "cls" );
 }
 
 int main(){
     
     cout << "\n ---------------Testando construtores -------------- \n" << endl;
     TRACE(Matrix<double> m1);
-    cout << "-> Matriz de dimensao " << m1.rows() << " x " << m1.cols() << endl;
+    cout << "-> Matriz de dimensao " << m1.getRows() << " x " << m1.getCols() << endl;
     PRINT(m1);
 
     TRACE(Matrix<float> m2(5, 5, 7.5));
-    cout << "-> Matriz de dimensao " << m2.rows() << " x " << m2.cols() << endl;
+    cout << "-> Matriz de dimensao " << m2.getRows() << " x " << m2.getCols() << endl;
     PRINT(m2);
 
     continuar();
     
     TRACE(Matrix<float> m3(m2));
-    cout << "-> Matriz de dimensao " << m3.rows() << " x " << m3.cols() << endl;
+    cout << "-> Matriz de dimensao " << m3.getRows() << " x " << m3.getCols() << endl;
     PRINT(m3);
     
-    TRACE(Matrix<double> m4(2, 3, 6));
-    cout << "-> Matriz de dimensao " << m4.rows() << " x " << m4.cols() << endl;
+    TRACE(Matrix<int> m4(2, 3, 6.9));
+    cout << "-> Matriz de dimensao " << m4.getRows() << " x " << m4.getCols() << endl;
     PRINT(m4);    
     
     continuar();
@@ -42,12 +45,23 @@ int main(){
     cout << "\n ---------------Testando Inicializacoes -------------- \n" << endl;
     
     TRACE(Matrix<float> m6(3, 4, 2.3));
-    cout << "-> Matriz de dimensao " << m6.rows() << " x " << m6.cols() << endl;
+    cout << "-> Matriz de dimensao " << m6.getRows() << " x " << m6.getCols() << endl;
     PRINT(m6);
-    m6.zeros();
     cout << "m6.zeros() :: Matriz Zeros" << endl;
+    m6.zeros();
     PRINT(m6);
-   
+    
+    TRACE(Matrix<float> m7(3, 4, 2.3));
+    cout << "-> Matriz de dimensao " << m6.getRows() << " x " << m6.getCols() << endl;
+    PRINT(m7);
+    cout << "m7.unit() :: Matriz Unit" << endl;
+    try{
+        m7.unit();
+    }catch(invalid_argument& err){
+        cerr<<"ERRO\t"<<err.what()<<endl<<endl;
+    }
+    PRINT(m7);
+
     continuar();
     
     cout << "\n --------------- Testando Sobrecarga de Operadores-------------------------- \n" << endl;
