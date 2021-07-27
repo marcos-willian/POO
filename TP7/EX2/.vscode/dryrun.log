@@ -1,0 +1,9 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/mnt/c/Users/marki/OneDrive - Universidade Federal de Minas Gerais/Livros_e_Faculdade/Progaming/POO/Atividades/TP7/EX2'
+g++ -c Programa_teste.cpp -g
+ 
+g++ -c  Box.cpp -g
+g++ Programa_teste.o Box.o -o Teste
+echo Sucesso!
+make: Leaving directory '/mnt/c/Users/marki/OneDrive - Universidade Federal de Minas Gerais/Livros_e_Faculdade/Progaming/POO/Atividades/TP7/EX2'
+ 

@@ -1,0 +1,300 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue Jul 27 20:22:07 2021
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
+# default
+.SHELLFLAGS := -c
+# environment
+VSCODE_AGENT_FOLDER = /home/mwsreis/.vscode-server
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /mnt/c/Users/marki/OneDrive - Universidade Federal de Minas Gerais/Livros_e_Faculdade/Progaming/POO/Atividades/TP7/EX2
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"87cc31538b9b883edbc678b622f4c652.pt-br","_translationsConfigFile":"/home/mwsreis/.vscode-server/data/clp/87cc31538b9b883edbc678b622f4c652.pt-br/tcf.json","_cacheRoot":"/home/mwsreis/.vscode-server/data/clp/87cc31538b9b883edbc678b622f4c652.pt-br","_resolvedLanguagePackCoreLocation":"/home/mwsreis/.vscode-server/data/clp/87cc31538b9b883edbc678b622f4c652.pt-br/c3f126316369cd610563c75b1b1725e0679adfb3","_corruptedFile":"/home/mwsreis/.vscode-server/data/clp/87cc31538b9b883edbc678b622f4c652.pt-br/corrupted.info","_languagePackSupport":true}
+# environment
+_ = /home/mwsreis/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/node
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /mnt/c/Users/marki/AppData/Local/Programs/Microsoft VS Code
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/mwsreis/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/VMware/VMware Player/bin/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Users/marki/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/marki/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files (x86)/Yarn/bin/:/mnt/c/Windows:/mnt/c/Windows/system32:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/marki/.dotnet/tools:/mnt/c/Users/marki/AppData/Roaming/npm:/mnt/c/Users/marki/AppData/Local/Yarn/bin:/mnt/c/Users/marki/AppData/Roaming/TinyTeX/bin/win32:/snap/bin
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-71d4b246-3a12-4ab8-aa82-daecc5e1baf6.sock
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /mnt/c/Users/marki/OneDrive - Universidade Federal de Minas Gerais/Livros_e_Faculdade/Progaming/POO/Atividades/TP7/EX2
+# default
+.LOADED := 
+# environment
+WSL_INTEROP = /run/WSL/14_interop
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
+# environment
+HOME = /home/mwsreis
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+LOGNAME = mwsreis
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 0
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = mwsreis
+# makefile
+.DEFAULT_GOAL := all
+# environment
+NAME = MWSREIS-NOTEBOOK
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/marki/.vscode/extensions/ms-vscode-remote.remote-wsl-0.58.2
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# environment
+HOSTTYPE = x86_64
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH = /home/mwsreis/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/remote/node_modules
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+WSL_DISTRO_NAME = Ubuntu-20.04
+# variable set hash-table stats:
+# Load=68/1024=7%, Rehash=0, Collisions=4/96=4%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 43, inode 2533274790460035): 11 files, no impossibilities.
+
+# 11 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+Programa_teste.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-27 20:21:00.6339262
+#  File has been updated.
+#  Successfully updated.
+
+all: Teste
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-27 20:20:47.1596962
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Box.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-27 20:06:04.6883907
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Box.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-27 20:06:07.2819698
+#  File has been updated.
+#  Successfully updated.
+
+Programa_teste.o: Programa_teste.cpp
+#  Implicit rule search has not been done.
+#  Last modified 2021-07-27 20:21:07.9615199
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 8):
+	@g++ -c Programa_teste.cpp -g
+
+# Not a target:
+Ponto2D.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-27 19:02:05.8101186
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 13):
+	@rm  -f *.o Teste
+	@echo Itens deletados!
+
+Box.o: Box.cpp Box.h Ponto2D.h Ponto3D.h
+#  Implicit rule search has not been done.
+#  Last modified 2021-07-27 20:21:08.6898049
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 11):
+	@g++ -c  Box.cpp -g
+
+Teste: Programa_teste.o Box.o
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Teste
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := Programa_teste.o Box.o
+# automatic
+# | := 
+# automatic
+# < := Programa_teste.o
+# automatic
+# ^ := Programa_teste.o Box.o
+# automatic
+# ? := Programa_teste.o Box.o
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 4):
+	@g++ Programa_teste.o Box.o -o Teste
+	@echo Sucesso!
+
+# Not a target:
+Ponto3D.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-27 19:55:03.7366377
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=13/1024=1%, Rehash=0, Collisions=1/36=3%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+ 
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 18 / storage = 165 B / avg = 9 B
+# current buf: size = 8162 B / used = 165 B / count = 18 / avg = 9 B
+
+# strcache performance: lookups = 39 / hit rate = 53%
+# hash-table stats:
+# Load=18/8192=0%, Rehash=0, Collisions=1/39=3%
+# Finished Make data base on Tue Jul 27 20:22:07 2021
+
+ 
