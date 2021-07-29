@@ -48,5 +48,4 @@ int main() {
     Derived2 d(3);
     cout<<"Testando: Derived2 d(3);\nTestanto: d.membro()\n";
     d.membro();
-
 }
