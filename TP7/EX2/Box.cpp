@@ -42,6 +42,26 @@ Box::Box(const Box& B){
     profundidade = B.profundidade;    
 }
 
+double Box::area() const{ 
+    if(this->profundidade > 0 && this->largura > 0 && this->altura > 0){
+        return (2*(altura*largura + largura*profundidade + altura*profundidade)); 
+    }
+    else{
+        return 0;
+        //throw std::domain_error("At least two dimensions need to be more than 0");
+    }
+    
+};
+double Box::volume() const {
+    if(this->profundidade > 0 && this->largura > 0 && this->altura > 0){
+        return (altura*profundidade*largura);
+    }
+    else{
+        return 0;
+        //throw std::domain_error("At least two dimensions need to be more than 0");
+    }
+};
+
 Box& Box::operator= (const Box& B){
     for (int i = 0; i < 8; i++){
         vertices[i] = B.vertices[i];

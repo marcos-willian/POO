@@ -16,8 +16,8 @@ class Box {
         Box(const Box& B);
         Box& operator= (const Box& B);
         friend std::ostream& operator<< (std::ostream& op, const Box& B);
-        double area() const { return (2*altura*largura + 2*largura*profundidade + 2*altura*profundidade); };
-        double volume() const { return (altura*profundidade*largura); };
+        double area() const;
+        double volume() const;
         const Ponto3D * getVertices() const { return vertices; };
         double getAltura() const { return altura; };
         double getProfundidade() const { return profundidade; };
