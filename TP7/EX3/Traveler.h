@@ -10,11 +10,11 @@ class Traveler{
             std::cout << "In constructor Traveler!\n";
         };
         Traveler(const Traveler& traveler ){
-            name = traveler.name + "-Copy";
+            name = traveler.name;
             std::cout << "In copy constructor Traveler!\n";
         };
         Traveler& operator=(const Traveler& traveler){
-            name = traveler.name + "-Atribuition";
+            name = traveler.name;
             std::cout << "In atribuition Traveler!\n";
             return *this;
         }

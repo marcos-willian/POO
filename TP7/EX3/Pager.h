@@ -10,11 +10,11 @@ class Pager{
             std::cout << "In constructor Pager!\n";
         };
         Pager(const Pager& pager ){
-            name = pager.name + "-Copy";
+            name = pager.name;
             std::cout << "In copy constructor Pager!\n";
         };
         Pager& operator=(const Pager& pager){
-            name = pager.name + "-Atribuition";
+            name = pager.name;
             std::cout << "In atribuition Pager!\n";
             return *this;
         }

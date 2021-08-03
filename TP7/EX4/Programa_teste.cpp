@@ -3,11 +3,17 @@ using namespace std;
 
 /**--------------------------------------------
  **               Respostas
- *  1 = Sem problemas, porem irá sobreescrever a função read existente na classe base.
- *  2 = Alterando a herança para private todos os elementos da classe base serão privados na classe derivada porem ainda é possível sobreescrever a função read.
- *  3 = A função read será publica apenas para a classe derivada, para fora dela no caso seus objetos eles serão privados sendo impossível chamar read() a partir de um objeto.
- *  4 = Como a herança de Derived é protect a classe Base materá seus atributos publicos e protect publicos em todas as classes que derivarem de Derived. Assim
- *  em Derived2 é possível chamar read() e value()
+ *  1 = Sim. Como a classe 'Derived' é uma classe filha de 'Base', ela possui permissao de acesso aos atributos protegidos.
+ * 
+ *  2 = Alterando a herança para private todos os elementos da classe base serão privados na classe derivada porem ainda é possível
+ *  acessar a função read.
+ * 
+ *  3 = A funcao read, por ser um atributo encapsulado como 'protected', será publica apenas para a classe derivada. Para fora dela
+ *  (no caso seus objetos) os atributos serão privados, sendo impossível chamar read() a partir de um objeto, ou seja, fora do código
+ *  da propria classe.
+ * 
+ *  4 = Como Derived herda a classe Base como 'protected', ela mantera seus atributos 'public' e 'protect' publicos em todas as classes
+ *  que herdarem Derived. Assim, em Derived2 é possível chamar read() e value().
  *---------------------------------------------**/
 
 
@@ -31,6 +37,10 @@ class Derived : protected Base {
         public:
             Derived(int jj = 0) : j(jj) {}
             void change(int x) { set(x); }
+            void accessRead(){
+                cout << "Testando acesso a funcao 'read' em Derived: "<< endl;
+                cout<<read()<< endl;
+            }
 };
 
 class Derived2 : public Derived {
@@ -38,14 +48,22 @@ class Derived2 : public Derived {
         int l;
         public:
             Derived2(int jj = 0) : l(jj) {}
-            void membro(){ 
+            void membro(){
+                cout<<"Testando acesso ao metodo 'read' em Derived2: " << endl;
                 cout<<read()<<endl;
+                cout<<"Testando acesso ao metodo 'value' em Derived2, passando 10 como parametro: " << endl;
                 cout<<value(10)<<endl;
             }
 };
 
 int main() {
+    cout<<"Testando heranca de 'Derived' \n"<< endl;
+    Derived derived(1);
+    cout<<"Testando acesso a funcao read pela classe: \n";
+    derived.accessRead();
+
+    cout<<"Testando heranca de 'Derived2' \n"<< endl;
     Derived2 d(3);
-    cout<<"Testando: Derived2 d(3);\nTestanto: d.membro()\n";
+    cout<<"Testando acesso a funcoes 'read' e 'value' pela classe: \n";
     d.membro();
 }
