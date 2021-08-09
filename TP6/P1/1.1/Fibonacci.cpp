@@ -22,8 +22,8 @@ template <class T> T fibonacci(T n) {
   else if(restOf(n) > 0){
     throw std::domain_error("The param must be a natural number");
   }
-  else if(typeid(T).name == typeid(char).name){
-    throw std::bad_typeid("The type of param must be a number type, or a numerical class.")
+  else if(typeid(T).name() == typeid(char).name()){
+    throw std::invalid_argument("The type of param must be a number type, or a numerical class.");
   }
 
   if (n == 1) {
@@ -49,7 +49,7 @@ int main(){
     // teste p/ executar excecao por argumento nao numerico
     print<char>(15);
   }
-  catch(bad_typeid& err){
+  catch(invalid_argument& err){
     cerr<<err.what()<<endl;
   }
   
