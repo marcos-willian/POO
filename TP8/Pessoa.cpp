@@ -1,12 +1,13 @@
 #include "Pessoa.h"
 #include <string>
+#include <iostream>
 
-Pessoa::Pessoa(){
-    this->nome = "indefinido";
-    this->idade = 0;
+void Pessoa::print() const{ 
+    std::cout <<"Nome: "<<nome;
+    std::cout <<"\tIdade: "<<idade<<std::endl;
 }
 
-Pessoa::Pessoa(std::string nome, int idade){
-    this->nome = nome;
-    this->idade = idade;
+void Pessoa::set(const std::string& name, const int& age){
+    idade = age;
+    nome = name;
 }
