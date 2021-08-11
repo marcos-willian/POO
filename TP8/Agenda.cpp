@@ -11,10 +11,12 @@ Agenda::Agenda(const int& qtdPessoas) {
             qtdAmigos++;
             Amigo *amigo = new Amigo();
             pessoas.push_back(*amigo);
+            indexesAmigos.push_back(i);
         }else if(choose == 0){
             qtdConhecidos++;
             Conhecido *conhecido = new Conhecido();
             pessoas.push_back(*conhecido);
+            indexesConhecidos.push_back(i);
             
         }
     }
@@ -33,15 +35,21 @@ void Agenda::addInfomacoes(){
 }
 
 void Agenda::imprimeAniversarios(){
+    int i = 0;
     std::cout<<"\nAniversário dos amigos:\n";
     for(std::vector<std::reference_wrapper<Pessoa>>::const_iterator pessoa = this->pessoas.begin(); pessoa != this->pessoas.end(); ++pessoa){
-        pessoa->get().printAniversario();
+        if(this->indexesConhecidos.at(i)){
+            pessoa->get().print();
+        }
+        i++;
     }
 }
 
 void Agenda::imprimeEmail(){
+    int i = 0;
     std::cout<<"\nEmail dos cohecidos:\n";
     for(std::vector<std::reference_wrapper<Pessoa>>::const_iterator pessoa = this->pessoas.begin(); pessoa != this->pessoas.end(); ++pessoa){
-        pessoa->get().printEmail();
+        if(this->indexesConhecidos.at(0))
+        pessoa->get().print();
     }
 }

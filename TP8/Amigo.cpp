@@ -12,7 +12,8 @@ void Amigo::setByInput(){
     int idade;
     std::cout <<"\n-------------Amigo----------------\n";
     std::cout <<"Insira o nome: ";
-    std::cin >> nome;
+    std::cin.ignore();
+    std::getline(std::cin, nome);
     std::cout <<"Insira a idade: ";
     std::cin >> idade;
     if( idade <= 0){
@@ -20,7 +21,8 @@ void Amigo::setByInput(){
     }
     Pessoa::set(nome, idade);
     std::cout <<"insira a data de aniversário (DD/MM/AAAA): ";
-    std::cin >> dataAniversario;
+    std::cin.ignore();
+    std::getline(std::cin, dataAniversario);
     if(dataAniversario.empty()) {
         throw std::invalid_argument("Erro ao digitar!!\n");
     }
@@ -39,8 +41,4 @@ void Amigo::setByInput(){
     if( 0 > ano){
         throw std::invalid_argument("Ano invalido!!\n");
     }
-}
-
-void Amigo::printAniversario(){
-    print();
 }

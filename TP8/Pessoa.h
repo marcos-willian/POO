@@ -15,8 +15,6 @@ class Pessoa{
         std::string getNome() { return nome; }
         void set(const std::string& nome, const int& idade);
         virtual void setByInput() = 0;
-        virtual void printEmail() {};
-        virtual void printAniversario() {};
 };
 
 
