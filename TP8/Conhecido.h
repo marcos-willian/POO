@@ -12,6 +12,6 @@ class Conhecido : public Pessoa {
         void print() const;
         void set(const std::string& EMAIL) { email = EMAIL; };
         void setByInput();
-        void printData();
 };
+
 #endif

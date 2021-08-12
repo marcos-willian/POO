@@ -13,4 +13,5 @@ class Amigo : public Pessoa {
         void set(const std::string& Bdate) {dataAniversario = Bdate;};
         void setByInput();
 };
+
 #endif

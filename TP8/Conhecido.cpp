@@ -26,16 +26,11 @@ void Conhecido::setByInput(){
     }
     Pessoa::set(nome, idade);
     std::cout <<"Insira o email: ";
-    std::cin.ignore();
-    std::getline(std::cin, email);
+    std::cin>>email;
     if(email.empty()){
         throw std::invalid_argument("Email vazio!!\n");
     }
     if(email.find('@') == email.npos){
         throw std::invalid_argument("Fomato do email errado!!\n");
     }
-}
-
-void Conhecido::printData(){
-    print();
 }

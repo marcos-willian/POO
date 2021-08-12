@@ -21,8 +21,7 @@ void Amigo::setByInput(){
     }
     Pessoa::set(nome, idade);
     std::cout <<"insira a data de aniversário (DD/MM/AAAA): ";
-    std::cin.ignore();
-    std::getline(std::cin, dataAniversario);
+    std::cin>>dataAniversario;
     if(dataAniversario.empty()) {
         throw std::invalid_argument("Erro ao digitar!!\n");
     }

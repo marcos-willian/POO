@@ -9,12 +9,11 @@
 #include <stdlib.h>
 #include <vector>
 #include <functional>
+#include <typeinfo>
 
 class Agenda {
     private:
         std::vector<std::reference_wrapper<Pessoa>> pessoas;
-        std::vector<std::reference_wrapper<int>> indexesAmigos;
-        std::vector<std::reference_wrapper<int>> indexesConhecidos;
         int qtdAmigos;
         int qtdConhecidos;
     public:
