@@ -32,18 +32,15 @@ void Agenda::addInfomacoes(){
 }
 
 void Agenda::imprimeAniversarios(){
-    int i = 0;
     std::cout<<"\nAniversário dos amigos:\n";
     for(std::vector<std::reference_wrapper<Pessoa>>::const_iterator pessoa = this->pessoas.begin(); pessoa != this->pessoas.end(); ++pessoa){
         if(typeid(pessoa->get()) == typeid(Amigo)){
             pessoa->get().print();
         }
-        i++;
     }
 }
 
 void Agenda::imprimeEmail(){
-    int i = 0;
     std::cout<<"\nEmail dos cohecidos:\n";
     for(std::vector<std::reference_wrapper<Pessoa>>::const_iterator pessoa = this->pessoas.begin(); pessoa != this->pessoas.end(); ++pessoa){
         if(typeid(pessoa->get()) == typeid(Conhecido)){
