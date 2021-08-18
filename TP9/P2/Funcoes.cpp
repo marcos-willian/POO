@@ -19,7 +19,10 @@ std::string Quadratica::funcDef(){
 /**============================================
  **               Sinc
  *=============================================**/
-double Sinc::func(const double& input){ 
+double Sinc::func(const double& input){
+    if(input == 0){
+        throw std::invalid_argument("O ponto 0 está fora do domínio da função!!");
+    } 
     return (termos[0]*sin(input))/input;
 }
 
@@ -63,7 +66,7 @@ std::string Cubica::funcDef(){
  **               Log
  *=============================================**/
 double Log::func(const double& input){ 
-    if(input < 0){ 
+    if(input <= 0){ 
         throw std::invalid_argument("O valor de entrada deve ser maior que 0!");
     }
     return termos[0]*log(input)/log(termos[1]);

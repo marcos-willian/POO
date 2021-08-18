@@ -8,6 +8,7 @@ using namespace std;
 int main(){
     Universidade UFMG;
     //Adiciona professores
+    cout<< "Iniciando programa de teste para 3 professores \n"<<endl;
     ProfHorista m("Marcos", 176, 19.59);
     ProfIntegral d("Denis", 15500.41);
     ProfHorista g("Gabriel", 120, 100);
